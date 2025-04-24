@@ -1,12 +1,12 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import Link from 'next/link'
 import { ScrollTrigger } from './utils/gsapInit'
+import Image from 'next/image' // Add Image import for fixing img tag
 import AnimatedSvgBackground from './components/AnimatedSvgBackground'
-import SectionDivider from './components/SectionDivider'
-import AnimatedCards from './components/AnimatedCards'
 import TechStackVisualizer from './components/TechStackVisualizer'
+import AnimatedCards from './components/AnimatedCards'
+import SectionDivider from './components/SectionDivider'
 
 // Updated Diamond Decoration Component that doesn't rotate by default
 const DiamondDecoration = ({ id }: { id: string }) => {
@@ -186,7 +186,7 @@ export default function Home() {
       })
       
       // Set up hover animations for each card
-      gsap.utils.toArray(".feature-card").forEach((card, index) => {
+      gsap.utils.toArray(".feature-card").forEach((card) => {
         const element = card as HTMLElement
         const diamondSvg = element.querySelector(`.diamond-svg`)
         
@@ -347,9 +347,9 @@ export default function Home() {
                 <span className="relative inline-block tracking-tight">
                   {/* Innovative - with red underline */}
                   <span className="relative">
-                    {"Innovative".split("").map((letter, index) => (
+                    {"Innovative".split("").map((letter, i) => (
                       <span 
-                        key={`innovative-${index}`} 
+                        key={`innovative-${i}`} 
                         className="inline-block transition-colors duration-300 hover:text-red-500"
                       >
                         {letter}
@@ -361,9 +361,9 @@ export default function Home() {
                   {" "}
                   {/* Tech - with blue underline */}
                   <span className="relative mx-1">
-                    {"Tech".split("").map((letter, index) => (
+                    {"Tech".split("").map((letter, i) => (
                       <span 
-                        key={`tech-${index}`} 
+                        key={`tech-${i}`} 
                         className="inline-block transition-colors duration-300 hover:text-blue-500"
                       >
                         {letter}
@@ -375,9 +375,9 @@ export default function Home() {
                   {" "}
                   {/* Solutions - with green underline */}
                   <span className="relative">
-                    {"Solutions".split("").map((letter, index) => (
+                    {"Solutions".split("").map((letter, i) => (
                       <span 
-                        key={`solutions-${index}`} 
+                        key={`solutions-${i}`} 
                         className="inline-block transition-colors duration-300 hover:text-green-500"
                       >
                         {letter}
@@ -468,20 +468,20 @@ export default function Home() {
                 <div className="education-scroller border-t border-l border-gray-800 rounded-bl-xl pt-5 pl-4 pr-6 max-h-[280px] w-[90%] md:w-[95%] overflow-y-auto custom-scrollbar">
                   <h3 className="text-xl font-semibold text-white mb-3 education-title flex items-center">
                     <span className="animate-pulse inline-block w-2 h-2 bg-accent-cyan rounded-full mr-2"></span>
-                  From the CEO's Desk
+                  From the CEO&apos;s Desk
                   </h3>
                   
                   <div className="education-content space-y-4 text-gray-300">
                     <p className="text-sm education-paragraph">
-                      At Lovosis Technology Pvt. Ltd., we believe technology isn't just about tools—it's about transformation. Every line of code, every campaign we launch, and every platform we build is guided by our core mission: to empower businesses through innovation, strategy, and excellence.
+                      At Lovosis Technology Pvt. Ltd., we believe technology isn&apos;t just about tools—it&apos;s about transformation. Every line of code, every campaign we launch, and every platform we build is guided by our core mission: to empower businesses through innovation, strategy, and excellence.
                     </p>
                     
                     <p className="text-sm education-paragraph">
-                      As the digital world evolves rapidly, our focus remains firm on delivering <span className="text-accent-cyan highlight-text">future-ready solutions</span> that create real impact. Whether it's building scalable software, optimizing digital visibility through SEO, or launching high-performance marketing campaigns across platforms like Meta and Google, we aim to be more than a service provider—we strive to be your growth partner.
+                      As the digital world evolves rapidly, our focus remains firm on delivering <span className="text-accent-cyan highlight-text">future-ready solutions</span> that create real impact. Whether it&apos;s building scalable software, optimizing digital visibility through SEO, or launching high-performance marketing campaigns across platforms like Meta and Google, we aim to be more than a service provider—we strive to be your growth partner.
                     </p>
                     
                     <p className="text-sm education-paragraph">
-                      We're proud of the diverse talent and culture of creativity within Lovosis. Our team is not only technically skilled, but also deeply committed to understanding your business needs and driving your vision forward.
+                      We&apos;re proud of the diverse talent and culture of creativity within Lovosis. Our team is not only technically skilled, but also deeply committed to understanding your business needs and driving your vision forward.
                     </p>
 
                     <p className="text-sm education-paragraph">
@@ -532,9 +532,11 @@ export default function Home() {
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink opacity-30 blur-sm rounded-xl"></div>
                   
                   {/* Manager image - with natural dimensions */}
-                  <img 
+                  <Image 
                     src="/rashidsir.png"
                     alt="Company Manager" 
+                    width={500}
+                    height={300}
                     className="manager-photo relative w-full object-contain rounded-xl" 
                     style={{ maxHeight: "500px" }}
                   />

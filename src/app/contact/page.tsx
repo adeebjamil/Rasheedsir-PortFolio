@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useRef, useState, FormEvent } from 'react'
 import gsap from 'gsap'
-import { ScrollTrigger } from '../utils/gsapInit'
 import emailjs from '@emailjs/browser'
 
 export default function Contact() {
@@ -24,11 +23,14 @@ export default function Contact() {
     loading: false
   })
 
-  const [emailJsStatus, setEmailJsStatus] = useState({
-    initialized: false,
-    checked: false
-  })
+  const [emailJsStatus, setEmailJsStatus] = useState('idle')
   
+  useEffect(() => {
+    if (emailJsStatus === 'success') {
+      console.log('Email sent successfully')
+    }
+  }, [emailJsStatus])
+
   useEffect(() => {
     // Check EmailJS configuration
     const checkEmailJs = async () => {
@@ -48,14 +50,14 @@ export default function Contact() {
           // Initialize EmailJS
           emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
           console.log("✅ EmailJS initialized successfully!");
-          setEmailJsStatus({ initialized: true, checked: true });
+          setEmailJsStatus('success');
         } else {
           console.warn("⚠️ EmailJS configuration incomplete. Missing environment variables.");
-          setEmailJsStatus({ initialized: false, checked: true });
+          setEmailJsStatus('error');
         }
       } catch (error) {
         console.error("❌ EmailJS initialization error:", error);
-        setEmailJsStatus({ initialized: false, checked: true });
+        setEmailJsStatus('error');
       }
     };
     

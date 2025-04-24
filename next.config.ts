@@ -1,9 +1,6 @@
 const nextConfig = {
   reactStrictMode: true,
-  // Add this to ensure proper React version handling
-  experimental: {
-    esmExternals: 'loose',
-  },
+  // Remove the experimental option that's causing issues
 }
 
 export default nextConfig;

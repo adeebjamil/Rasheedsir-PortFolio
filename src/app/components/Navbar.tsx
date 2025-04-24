@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image' // Import Image component
 import { usePathname } from 'next/navigation'
-import gsap from 'gsap'
 
 const Navbar = () => {
   const pathName = usePathname()

@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import Link from 'next/link'
 
 const Footer = () => {
   const footerRef = useRef(null)
@@ -55,25 +56,25 @@ const Footer = () => {
                 <svg className="w-4 h-4 text-accent-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
-                <a href="/" className="text-white/60 hover:text-accent-blue transition duration-300">Home</a>
+                <Link href="/" className="text-white/60 hover:text-accent-blue transition duration-300">Home</Link>
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 text-accent-cyan mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
-                <a href="/solutions" className="text-white/60 hover:text-accent-cyan transition duration-300">Solutions</a>
+                <Link href="/solutions" className="text-white/60 hover:text-accent-cyan transition duration-300">Solutions</Link>
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 text-accent-purple mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
-                <a href="/companies" className="text-white/60 hover:text-accent-purple transition duration-300">Companies</a>
+                <Link href="/companies" className="text-white/60 hover:text-accent-purple transition duration-300">Companies</Link>
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 text-accent-pink mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
-                <a href="/contact" className="text-white/60 hover:text-accent-pink transition duration-300">Contact Us</a>
+                <Link href="/contact" className="text-white/60 hover:text-accent-pink transition duration-300">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -114,7 +115,7 @@ const Footer = () => {
               
               <div className="flex items-center">
                 <svg className="w-5 h-5 text-accent-blue mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9-3-9m-9 9a9 9 0 019-9" />
                 </svg>
                 <a href="https://www.lovosis.in" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-accent-blue transition duration-300">
                   www.lovosis.in

@@ -1,7 +1,8 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import { ScrollTrigger } from '../utils/gsapInit'  // Add this named import
+import { ScrollTrigger } from '../utils/gsapInit'
+import Image from 'next/image' // Add this import
 
 export default function Companies() {
   const headerRef = useRef(null)
@@ -27,17 +28,6 @@ export default function Companies() {
     
     // Clients animations with motion paths
     const clientsCtx = gsap.context(() => {
-      // Create motion paths for company logos
-      const getRandomPath = (index: number) => {
-        const pathData = [
-          "M0,0 C50,-20 100,20 150,0 S200,-20 250,0",
-          "M0,0 C30,30 60,-30 90,0 S120,30 150,0",
-          "M0,0 C40,-10 80,10 120,0 S160,-10 200,0",
-          "M0,0 C25,25 50,-25 75,0 S100,25 125,0"
-        ];
-        return pathData[index % pathData.length];
-      };
-      
       // Animate company logos along motion paths
       gsap.utils.toArray(".company-logo").forEach((logo, i) => {
         const element = logo as HTMLElement;
@@ -98,7 +88,7 @@ export default function Companies() {
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <h1 className="page-title text-4xl md:text-5xl font-bold mb-4 text-white">Our Partner Companies</h1>
           <p className="page-subtitle text-xl max-w-3xl mx-auto text-gray-300">
-            We're proud to work with leading companies across various industries
+            We&apos;re proud to work with leading companies across various industries
           </p>
         </div>
       </div>
@@ -133,44 +123,54 @@ export default function Companies() {
             {/* First 8 companies with existing images - UPDATED BACKGROUND */}
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <div key={i} className="company-logo bg-white/10 backdrop-blur-sm border border-gray-800 p-5 rounded-lg shadow-md flex items-center justify-center h-32 hover:border-accent-cyan/50 transition-colors duration-300">
-                <img 
+                <Image 
                   src={`/company/img${i}.png`}
                   alt={`Partner Company ${i}`}
-                  className="max-h-full max-w-full object-contain filter brightness-75 hover:brightness-100 transition-all duration-300"
+                  width={120}
+                  height={60}
+                  className="opacity-70 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}
             
             {/* Additional 4 companies - UPDATED BACKGROUND */}
             <div className="company-logo bg-white/10 backdrop-blur-sm border border-gray-800 p-5 rounded-lg shadow-md flex items-center justify-center h-32 hover:border-accent-purple/50 transition-colors duration-300">
-              <img 
+              <Image 
                 src="/company/img9.png"
                 alt="Partner Company 9" 
-                className="max-h-full max-w-full object-contain filter brightness-75 hover:brightness-100 transition-all duration-300"
+                width={120}
+                height={60}
+                className="opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
             
             <div className="company-logo bg-white/10 backdrop-blur-sm border border-gray-800 p-5 rounded-lg shadow-md flex items-center justify-center h-32 hover:border-accent-pink/50 transition-colors duration-300">
-              <img 
+              <Image 
                 src="/company/img10.png" 
                 alt="Partner Company 10"
-                className="max-h-full max-w-full object-contain filter brightness-75 hover:brightness-100 transition-all duration-300 transform rotate-180"
+                width={120}
+                height={60}
+                className="opacity-70 hover:opacity-100 transition-opacity transform rotate-180"
               />
             </div>
             
             <div className="company-logo bg-white/10 backdrop-blur-sm border border-gray-800 p-5 rounded-lg shadow-md flex items-center justify-center h-32 hover:border-accent-cyan/50 transition-colors duration-300">
-              <img 
+              <Image 
                 src="/company/img11.png"
                 alt="Partner Company 11"
-                className="max-h-full max-w-full object-contain filter brightness-75 hover:brightness-100 transition-all duration-300 transform scale-75"
+                width={120}
+                height={60}
+                className="opacity-70 hover:opacity-100 transition-opacity transform scale-75"
               />
             </div>
             
             <div className="company-logo bg-white/10 backdrop-blur-sm border border-gray-800 p-5 rounded-lg shadow-md flex items-center justify-center h-32 hover:border-accent-purple/50 transition-colors duration-300">
-              <img 
+              <Image 
                 src="/company/img12.png"
                 alt="Partner Company 12"
-                className="max-h-full max-w-full object-contain filter brightness-75 hover:brightness-100 transition-all duration-300 transform scale-90"
+                width={120}
+                height={60}
+                className="opacity-70 hover:opacity-100 transition-opacity transform scale-90"
               />
             </div>
           </div>

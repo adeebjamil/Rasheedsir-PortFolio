@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import { ScrollTrigger } from '../utils/gsapInit'
 
 // Gallery images with Unsplash URLs (no download needed)
 const galleryImages = [
@@ -49,7 +48,7 @@ const galleryImages = [
   }
 ];
 
-const AnimatedGallery = () => {
+export default function AnimatedGallery() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
   
@@ -160,51 +159,50 @@ const AnimatedGallery = () => {
       {/* Images container - height reduced */}
       <div ref={imagesRef} className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
-          {galleryImages.map((image, index) => (
-            <div 
-              key={image.id} 
-              className="gallery-image rounded-xl overflow-hidden relative"
-              style={{ 
-                boxShadow: `0 20px 40px rgba(0, 0, 0, 0.4)`,
-                transform: 'perspective(1000px)',
-                height: '300px', // Fixed height for consistency
-                transformStyle: 'preserve-3d',
-                willChange: 'transform, opacity'
-              }}
-            >
-              {/* Image */}
+          {galleryImages.map((image) => (
+            <div key={image.imageUrl} className="gallery-item">
               <div 
-                className="w-full h-full bg-center bg-cover"
-                style={{
-                  backgroundImage: `url(${image.imageUrl})`,
-                  boxShadow: `inset 0 0 0 2px ${image.accent}30`
+                className="gallery-image rounded-xl overflow-hidden relative"
+                style={{ 
+                  boxShadow: `0 20px 40px rgba(0, 0, 0, 0.4)`,
+                  transform: 'perspective(1000px)',
+                  height: '300px', // Fixed height for consistency
+                  transformStyle: 'preserve-3d',
+                  willChange: 'transform, opacity'
                 }}
-              />
-              
-              {/* Overlay on hover */}
-              <div 
-                className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100"
               >
+                {/* Image */}
                 <div 
-                  className="transform translate-y-4 hover:translate-y-0 transition-transform duration-300 bg-black bg-opacity-70 px-4 py-2 rounded-md text-center"
-                  style={{ border: `1px solid ${image.accent}` }}
+                  className="w-full h-full bg-center bg-cover"
+                  style={{
+                    backgroundImage: `url(${image.imageUrl})`,
+                    boxShadow: `inset 0 0 0 2px ${image.accent}30`
+                  }}
+                />
+                
+                {/* Overlay on hover */}
+                <div 
+                  className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100"
                 >
-                  <h3 className="text-white text-lg font-semibold">{image.title}</h3>
-                  <p className="text-gray-300 text-sm">{image.description}</p>
+                  <div 
+                    className="transform translate-y-4 hover:translate-y-0 transition-transform duration-300 bg-black bg-opacity-70 px-4 py-2 rounded-md text-center"
+                    style={{ border: `1px solid ${image.accent}` }}
+                  >
+                    <h3 className="text-white text-lg font-semibold">{image.title}</h3>
+                    <p className="text-gray-300 text-sm">{image.description}</p>
+                  </div>
                 </div>
+                
+                {/* Accent border */}
+                <div 
+                  className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{ boxShadow: `inset 0 0 0 3px ${image.accent}` }}
+                />
               </div>
-              
-              {/* Accent border */}
-              <div 
-                className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{ boxShadow: `inset 0 0 0 3px ${image.accent}` }}
-              />
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default AnimatedGallery;
+}

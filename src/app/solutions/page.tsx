@@ -167,7 +167,6 @@ export default function Solutions() {
       // Add hover animations to solution cards
       document.querySelectorAll(".solution-card").forEach((card) => {
         const heading = card.querySelector("h3");
-        const paragraph = card.querySelector("p");
         const tags = card.querySelectorAll(".flex span");
         const iconContainer = card.querySelector(".h-60");
         
