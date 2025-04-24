@@ -1,26 +1,194 @@
 @import "tailwindcss";
 
+/* Add these CSS variables to your existing styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black-bg: #0c0c0c;
+  --black-card: #141414;
+  --black-accent: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --accent-pink: #ff7bac;
+  --accent-blue: #7bffee;
+  --accent-purple: #b57bff;
+  --accent-green: #7bff9e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Add these styles for the magnetic cursor */
+
+/* Hide cursor on elements that have magnetic effect */
+.custom-cursor .feature-card,
+.custom-cursor a,
+.custom-cursor button {
+  cursor: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Main cursor dot */
+.cursor {
+  will-change: transform;
+  transition: scale 0.3s ease;
+}
+
+/* Larger cursor follower */
+.cursor-follower {
+  will-change: transform;
+  transition: scale 0.3s ease, opacity 0.3s ease;
+}
+
+/* Add when hovering interactive elements */
+.cursor.active {
+  mix-blend-mode: exclusion;
+}
+
+/* Make sure magnetic elements have relative position for proper hovering */
+.feature-card {
+  position: relative;
+}
+
+/* Media query for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  [ref="cursorRef"], 
+  [ref="followerRef"] {
+    display: none !important;
+  }
+  
+  body.custom-cursor {
+    cursor: auto !important;
+  }
+  
+  .custom-cursor .feature-card,
+  .custom-cursor a,
+  .custom-cursor button {
+    cursor: auto !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Stacking cards setup */
+.stacking-cards-container {
+    position: relative;
+    height: 400px;
+    margin: 80px 0;
+  }
+  
+  .stacking-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform-origin: center left;
+    transform: translateX(-30px);
+    will-change: transform, opacity;
+  }
+  
+  /* End marker for stacking animation */
+  .end-element {
+    position: relative;
+    height: 200px;
+  }
+
+
+
+  /* Solution */
+
+
+/* Add this to your global CSS */
+.solution-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.solution-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
+  opacity: 0;
+  transform: rotate(0deg);
+  transition: opacity 0.5s;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.solution-card:hover::before {
+  opacity: 1;
+  animation: cardGradientSpin 10s linear infinite;
+}
+
+@keyframes cardGradientSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Add these new animation styles */
+
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+}
+
+.animate-gradientFlow {
+  animation: gradientFlow 8s ease infinite;
+  background-size: 100% 200%;
+}
+
+.link-animation {
+  position: relative;
+  white-space: nowrap;
+}
+
+.link-animation:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #7bffee, #b57bff);
+  transition: width 0.4s ease-in-out;
+}
+
+.link-animation:hover:after {
+  width: 100%;
+}
+
+.highlight-text {
+  position: relative;
+  display: inline-block;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 0px rgba(123, 255, 238, 0);
+  }
+  to {
+    text-shadow: 0 0 5px rgba(123, 255, 238, 0.8);
+  }
+}
+
+/* Custom scrollbar  */
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #7bffee, #b57bff);
+  border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #b57bff, #ff7bac);
 }
